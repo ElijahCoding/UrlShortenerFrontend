@@ -1,5 +1,7 @@
 <template>
-  <p>Home shortener</p>
+  <div class="container container--centered">
+    Home
+  </div>
 </template>
 
 <script>

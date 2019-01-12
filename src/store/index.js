@@ -18,6 +18,7 @@ export default new Vuex.Store({
   actions,
 
   modules: {
-    shortener
+    shortener,
+    stats
   }
 })
