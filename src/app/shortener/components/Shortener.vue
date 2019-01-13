@@ -1,6 +1,6 @@
 <template>
   <div class="container container--centered">
-    <form class="urlform" action="">
+    <form action="#" class="urlform" @submit.prevent="shortenUrl" novalidate>
       <input type="url"
              placeholder="Let's get you a short URL"
              class="urlform__input"
@@ -8,40 +8,48 @@
              >
     </form>
 
-    <div class="result">
+    <div class="result" v-if="shortened">
       <div class="result__details">
         <div class="result__original">
-          <span>google.com</span>
+          <span>{{ shortened.original_url }}</span> is now
         </div>
-        <a href="#" target="_blank" class="result__url">http://localhost:5050/abc</a>
-        <a href="#" class="result__stats">Get stats</a>
+        <a :href="shortened.shortened_url" target="_blank" class="result__url">{{ shortened.shortened_url }}</a>
+        <router-link :to="{ name: 'stats', params: { code: shortened.code } }" class="result__stats">
+          Get stats
+        </router-link>
       </div>
       <button class="button button--yellow">Copy to clipboard</button>
     </div>
 
-    <!-- <div class="notice">
+    <div class="notice" v-if="url && !shortened && !waiting">
       Hit return when you're done
     </div>
 
-    <div class="notice">
+    <div class="notice" v-if="waiting">
       One moment
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
-  import { mapGetters, mapMutations } from 'vuex'
+  import { mapGetters, mapMutations, mapActions } from 'vuex'
 
   export default {
     methods: {
       ...mapMutations({
         setUrl: 'shortener/setUrl'
+      }),
+
+      ...mapActions({
+        shortenUrl: 'shortener/shortenUrl'
       })
     },
 
     computed: {
       ...mapGetters({
-        url: 'shortener/url'
+        url: 'shortener/url',
+        shortened: 'shortener/shortened',
+        waiting: 'shortener/waiting'
       }),
 
       formUrl: {
