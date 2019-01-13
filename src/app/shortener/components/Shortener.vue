@@ -1,7 +1,11 @@
 <template>
   <div class="container container--centered">
     <form class="urlform" action="">
-      <input type="url" placeholder="Let's get you a short URL" class="urlform__input">
+      <input type="url"
+             placeholder="Let's get you a short URL"
+             class="urlform__input"
+             v-model="formUrl"
+             >
     </form>
 
     <div class="result">
@@ -26,8 +30,30 @@
 </template>
 
 <script>
-  export default {
+  import { mapGetters, mapMutations } from 'vuex'
 
+  export default {
+    methods: {
+      ...mapMutations({
+        setUrl: 'shortener/setUrl'
+      })
+    },
+
+    computed: {
+      ...mapGetters({
+        url: 'shortener/url'
+      }),
+
+      formUrl: {
+        get () {
+          return this.url
+        },
+
+        set (value) {
+          this.setUrl(value)
+        }
+      }
+    }
   }
 </script>
 
