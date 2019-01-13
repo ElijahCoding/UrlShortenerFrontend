@@ -1,3 +1,3 @@
-export const getMessage = (state) => {
+export const message = (state) => {
   return state.message
 }
