@@ -1,12 +1,37 @@
 <template>
   <div class="container container--centered">
-    Stats
+    <div class="stats">
+      <h1 class="stats__header">
+        Stats for
+      </h1>
+
+      <dl class="dlist">
+         <dt class="dlist__title">Origin URL</dt>
+         <dd class="dlist__body"></dd>
+      </dl>
+     <dl class="dlist">
+        <dt class="dlist__title">Shortening requested</dt>
+        <dd class="dlist__body"></dd>
+     </dl>
+     <dl class="dlist">
+        <dt class="dlist__title">Used</dt>
+        <dd class="dlist__body"></dd>
+     </dl>
+     <dl class="dlist">
+        <dt class="dlist__title">Last requested</dt>
+        <dd class="dlist__body"></dd>
+     </dl>
+     <dl class="dlist">
+        <dt class="dlist__title">Last used</dt>
+        <dd class="dlist__body"></dd>
+     </dl>
+    </div>
   </div>
 </template>
 
 <script>
   export default {
-    
+
   }
 </script>
 
