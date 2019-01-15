@@ -12,3 +12,18 @@ app.listen(port);
 app.get('/', function (req, res, next) {
   res.sendFile(__dirname + '/index.html')
 })
+
+
+app.get('/:code', function (req, res, next) {
+  axios.get(apiUrl + '?code=' + req.params.code).then(function (response) {
+    res.redirect(301, response.data.data.original_url);
+  }).catch(function (error) {
+    next();
+  });
+}, function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.get('*', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
