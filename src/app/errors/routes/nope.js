@@ -8,6 +8,7 @@ export default [
 
     {
         path: '/nope',
+        name: 'nope',
         component: Nope
     }
 ]
